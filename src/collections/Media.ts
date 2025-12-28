@@ -1,9 +1,14 @@
-import type { CollectionConfig } from 'payload'
+import { CollectionConfig } from 'payload'
 
 export const Media: CollectionConfig = {
   slug: 'media',
+  upload: {
+    staticDir: 'media', // Directorio temporal
+    adminThumbnail: 'thumbnail',
+    mimeTypes: ['image/*', 'application/pdf'], // Solo imágenes y PDFs para auditoría
+  },
   access: {
-    read: () => true,
+    read: () => true, // Por ahora público, luego lo protegeremos
   },
   fields: [
     {
@@ -12,5 +17,4 @@ export const Media: CollectionConfig = {
       required: true,
     },
   ],
-  upload: true,
 }
