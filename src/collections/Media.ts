@@ -1,9 +1,10 @@
 // collections/Media.ts
-export const Media = {
+import { CollectionConfig } from 'payload'
+
+export const Media: CollectionConfig = {
   slug: 'media',
   upload: {
     staticDir: 'media',
-    // Solo permite imágenes de cualquier tipo
     mimeTypes: ['image/*'], 
     imageSizes: [
       { name: 'thumbnail', width: 400, height: 300, position: 'centre' },
@@ -14,7 +15,7 @@ export const Media = {
   fields: [
     {
       name: 'alt',
-      type: 'text',
+      type: 'text', // Ahora TypeScript sabrá que 'text' es un tipo de campo válido
       required: true,
     },
   ],

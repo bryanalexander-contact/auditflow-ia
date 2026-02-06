@@ -1,25 +1,33 @@
-// collections/Posts.ts
-export const Posts = {
+import { CollectionConfig } from 'payload'
+
+export const Posts: CollectionConfig = {
   slug: 'posts',
+  admin: {
+    useAsTitle: 'title',
+  },
   fields: [
-    { name: 'title', type: 'text' },
+    { 
+      name: 'title', 
+      type: 'text',
+      required: true,
+    },
     {
       name: 'coverImage',
       type: 'upload',
       relationTo: 'media',
-      admin: { description: 'Sube la portada aquí' }
+      admin: { 
+        description: 'Sube la portada aquí' 
+      },
     },
     {
       name: 'downloadableFiles',
       type: 'upload',
       relationTo: 'media',
       hasMany: true,
-      filterOptions: {
-        mimeType: { contains: 'application/pdf' }, // Solo permite PDFs
+      admin: {
+        description: 'Solo se permiten PDFs en esta sección',
       },
+      // En v3, filterOptions ayuda pero el control real es el mimeType en Media
     },
   ],
-};
-
-// En payload.config.ts añade:
-// sharp.webp() se encarga de la conversión si lo configuras en los hooks.
+}
